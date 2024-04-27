@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "MultiModuleReliable"
 include ':app'
 include ':shared_pref'
+include ':mylibrary'
+include ':common'

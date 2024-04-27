@@ -1,16 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.app.multimodule_reliable'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.app.multimodule_reliable"
         minSdk 21
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -27,13 +29,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion ="1.4.1"
+    }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
-//    implementation(project:('buildSrc'))
+//    implementation implementation(project(':shared_pref'))
+
+    implementation(project(':shared_pref'))
     implementation Deps.core
     implementation Deps.appCompat
     implementation Deps.materialCompat
@@ -41,6 +53,10 @@ dependencies {
     testImplementation TestImplementation.testImplJunit
     androidTestImplementation AndroidTestImplementation.androidTestImplJunit
     androidTestImplementation AndroidTestImplementation.androidTestEspresso
+     implementation DaggerHilt.dagger
+    kapt DaggerHilt.dagger_kapt
+//    implementation("com.google.dagger:hilt-android:2.51.1")
+//    kapt("com.google.dagger:hilt-compiler:2.51.1")
 
 //    implementation 'androidx.appcompat:appcompat:1.6.1'
 //    implementation 'com.google.android.material:material:1.11.0'
